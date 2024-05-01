@@ -1,5 +1,34 @@
 <script setup>
+import axios from "axios";
+import {baseUrl} from "@/helpers/GlobalVariable.js";
+import {onMounted, ref} from "vue";
+const blogList = ref()
+const searchList = ref('')
+const getData = async () => {
+  try{
+    const {data} = await axios.get(baseUrl + 'blog')
+    blogList.value = data
+    console.log(data)
+  } catch (e) {
+    console.log(e)
+  }
+}
+const searchData = async () => {
+  try{
+    const {data} = await axios.get(baseUrl + `blog/search/${searchList.value}`)
+    blogList.value = data
+    if (searchList.value === ''){
+      await getData()
+    }
+  } catch (e) {
+    console.log(e)
+  }
 
+}
+onMounted(() => {
+  getData()
+  console.log(blogList.value)
+})
 </script>
 
 <template>
@@ -7,7 +36,7 @@
   <div class="content-wrapper bg-white p-6 rounded-lg border">
     <div class="flex w-full gap-6">
       <div class="w-full">
-        <input type="search" class="w-full bg-[#F5F6FB] border rounded p-3 focus:outline-0" placeholder="search here...">
+        <input type="text" @keyup="searchData" v-model="searchList" class="w-full bg-[#F5F6FB] border rounded p-3 focus:outline-0" placeholder="search here...">
       </div>
       <div class="">
         <button class="btn btn-primary whitespace-nowrap">Add New Blog</button>
@@ -18,15 +47,19 @@
       <tr class="bg-primary text-white rounded">
         <th>#</th>
         <th>Nama Blog</th>
-        <th>Author</th>
+        <th>Image</th>
         <th>Aksi</th>
       </tr>
       </thead>
       <tbody>
-      <tr>
-        <th>1</th>
-        <th>Blog 1</th>
-        <th>Agung Jaya</th>
+      <tr v-for="(item, index) in blogList" :key="index">
+        <th>{{index + 1}}</th>
+        <th>{{item.title}}</th>
+        <th>
+          <div class="flex justify-center">
+            <img :src="item.image" class="w-[200px] h-auto" alt="">
+          </div>
+        </th>
         <th>
           <button class="hover:brightness-125 duration-200">
             <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">

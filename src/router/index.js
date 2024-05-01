@@ -59,9 +59,9 @@ router.beforeEach((to, from) => {
   if (!token.value && to.meta.isPrivate) {
     return {name: 'login'}
   }
-  // if (token.value && !to.meta.isPrivate) {
-  //   return {name:"dashboard"}
-  // }
+  if (token.value && !to.meta.isPrivate) {
+    return {name:"dashboard"}
+  }
 })
 
 export default router

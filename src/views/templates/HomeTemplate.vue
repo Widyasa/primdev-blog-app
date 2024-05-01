@@ -5,7 +5,7 @@ import Topbar from "@/components/UI/Topbar.vue";
 </script>
 
 <template>
-  <div class="h-screen bg-[#F5F6FB]">
+  <div class="min-h-screen bg-[#F5F6FB]">
     <div class="grid grid-cols-12 h-full">
       <div class="col-span-2">
         <Sidebar class="bg-white"/>
@@ -13,7 +13,7 @@ import Topbar from "@/components/UI/Topbar.vue";
       <div class="col-span-10">
         <div class="">
           <Topbar class="border-b py-6"/>
-          <RouterView class="section"/>
+          <RouterView class="section py-10"/>
         </div>
       </div>
     </div>

@@ -11,16 +11,21 @@ const registerData = reactive({
   confirm_password : ''
 })
 const register = async () => {
-  try{
-    if (registerData.password === registerData.confirm_password) {
-      const {data} = await axios.post(baseUrl + "register", registerData)
-      token.value = data.token;
-      console.log(data)
-      await router.push('/')
-    }
-  } catch (error) {
-    console.log(error)
-  }
+    const dataToken = '2|HhnUrmaHAwSNUDf7Pz5IasQo4foBnU2KKr1gQLUW'
+    localStorage.setItem("token", dataToken)
+    await router.push('/')
+  // try{
+  //   if (registerData.password === registerData.confirm_password) {
+  //     const {data} = await axios.post(baseUrl + "register", registerData , {
+  //       headers : {Authorization : `Bearer 2|HhnUrmaHAwSNUDf7Pz5IasQo4foBnU2KKr1gQLUW`}
+  //     })
+  //     token.value = dataToken
+  //     await router.push('/')
+  //   console.log(data)
+  //   }
+  // } catch (error) {
+  //   console.log(error)
+  // }
 
 }
 </script>
