@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .section {
+        @apply container mx-auto
+    }
+    .active .dashboard-nav-wrapper{
+        @apply bg-primary  text-white
+    }
+    .dashboard-nav-wrapper{
+        @apply w-full pl-5 pr-8 py-4 rounded duration-200 hover:text-white hover:bg-primary
+    }
+    tr th{
+        @apply py-3
+    }
+    tr th:first-child {
+        @apply rounded-l
+    }
+    tr th:last-child {
+        @apply rounded-r
+    }
+    tbody tr th{
+        @apply font-normal
+    }
+    tbody tr{
+        @apply border-b
+    }
+    .btn{
+        @apply px-5 py-4 rounded hover:brightness-110 text-white text-sm duration-200
+    }
+    .btn-primary {
+        @apply bg-primary
+    }
+    .input-text{
+        @apply rounded border w-full p-3 text-sm focus:outline-none
+    }
+}
