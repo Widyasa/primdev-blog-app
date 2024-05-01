@@ -11,12 +11,16 @@ const registerData = reactive({
   confirm_password : ''
 })
 const register = async () => {
+  try{
     if (registerData.password === registerData.confirm_password) {
       const {data} = await axios.post(baseUrl + "register", registerData)
       token.value = data.token;
       console.log(data)
       await router.push('/')
     }
+  } catch (error) {
+    console.log(error)
+  }
 
 }
 </script>
