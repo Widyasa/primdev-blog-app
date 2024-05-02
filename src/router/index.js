@@ -1,11 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Dashboard from "@/views/templates/pages/Dashboard.vue";
 import HomeTemplate from "@/views/templates/HomeTemplate.vue";
-import Blog from "@/views/templates/pages/Blog.vue";
+import Blog from "@/views/templates/pages/Blogs/Blog.vue";
 import AuthTemplate from "@/views/templates/authTemplate.vue";
 import Login from "@/views/templates/pages/Login.vue";
 import Register from "@/views/templates/pages/Register.vue";
 import {token} from "@/helpers/GlobalVariable.js";
+import CreateBlog from "@/views/templates/pages/Blogs/CreateBlog.vue";
+import BlogTemplate from "@/views/templates/pages/Blogs/BlogTemplate.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -25,10 +27,26 @@ const router = createRouter({
         },
         {
           path: '/blog',
+          redirect: '/blog/index',
+          component: BlogTemplate,
           name: 'blog',
-          component: Blog,
           meta: {isPrivate: true},
+          children: [
+            {
+              path: '/blog/index',
+              name: 'blog',
+              component: Blog,
+              meta: {isPrivate: true},
+            },
+            {
+              path: '/blog/create',
+              name: 'Create Blog',
+              component: CreateBlog,
+              meta: {isPrivate: true},
+            },
+          ]
         },
+
 
       ]
     },
