@@ -25,6 +25,14 @@ const searchData = async () => {
   }
 
 }
+const deleteData = async (id) => {
+    try{
+      const {data} = await axios.delete(baseUrl + `blog/${id}`)
+      getData()
+    } catch (e) {
+      console.log(e)
+    }
+}
 onMounted(() => {
   getData()
 })
@@ -50,7 +58,7 @@ onMounted(() => {
       </p>
       <div class="mt-5 flex justify-center gap-5">
         <RouterLink :to="{path: '/blog/update/' + item.id}" class="btn btn-primary w-full text-center">Update</RouterLink>
-        <button class="btn btn-primary w-full">Delete</button>
+        <button @click="deleteData(item.id)" class="btn btn-primary w-full">Delete</button>
       </div>
     </div>
   </div>
