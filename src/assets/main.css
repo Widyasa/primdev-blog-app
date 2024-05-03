@@ -36,4 +36,10 @@
     .input-text{
         @apply rounded border w-full p-3 text-sm focus:outline-none
     }
+    .img-upload-wrapper{
+        @apply w-[200px] h-[100px] flex justify-center items-center rounded border
+    }
+    .card-blog{
+        @apply border rounded p-4
+    }
 }
