@@ -8,6 +8,7 @@ import Register from "@/views/templates/pages/Register.vue";
 import {token} from "@/helpers/GlobalVariable.js";
 import CreateBlog from "@/views/templates/pages/Blogs/CreateBlog.vue";
 import BlogTemplate from "@/views/templates/pages/Blogs/BlogTemplate.vue";
+import UpdateBlog from "@/views/templates/pages/Blogs/UpdateBlog.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -42,6 +43,12 @@ const router = createRouter({
               path: '/blog/create',
               name: 'Create Blog',
               component: CreateBlog,
+              meta: {isPrivate: true},
+            },
+            {
+              path: '/blog/update/:id',
+              name: 'Update Blog',
+              component: UpdateBlog,
               meta: {isPrivate: true},
             },
           ]

@@ -27,7 +27,6 @@ const searchData = async () => {
 }
 onMounted(() => {
   getData()
-  console.log(blogList.value)
 })
 </script>
 
@@ -49,6 +48,10 @@ onMounted(() => {
       <p class="blog-content">
         {{item.content}}
       </p>
+      <div class="mt-5 flex justify-center gap-5">
+        <RouterLink :to="{path: '/blog/update/' + item.id}" class="btn btn-primary w-full text-center">Update</RouterLink>
+        <button class="btn btn-primary w-full">Delete</button>
+      </div>
     </div>
   </div>
 </template>
