@@ -27,6 +27,7 @@ blogData.image = file.value;
 
 const createBlog = async () => {
   const fd = new FormData();
+  // fd.append('_method', 'put')
   fd.append('image', file.value);
   fd.append('title', blogData.title);
   fd.append('content', blogData.content);

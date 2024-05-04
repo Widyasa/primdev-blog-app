@@ -2,7 +2,7 @@
 
 import BaseInput from "@/components/BaseInput.vue";
 import BaseTextArea from "@/components/BaseTextArea.vue";
-import {onMounted, reactive, ref} from "vue";
+import { onMounted, reactive, ref, watch } from 'vue'
 import axios from "axios";
 import {baseUrl} from "@/helpers/GlobalVariable.js";
 import router from "@/router/index.js";
@@ -20,15 +20,17 @@ const file = ref()
 const getDataById = async () => {
   console.log("tes")
   const {data} = await axios.get(baseUrl + `blog/${route.params.id}`);
+  console.log(data)
   blogData.title = data.title;
   blogData.image = data.image;
   blogData.content = data.content;
   imagePrev.value = data.image;
 }
+
 const previewPhoto = (e) => {
   file.value = e.target.files[0];
+  blogData.image = file.value;
   // if (!file.value) return; // Handle no file selected case
-
   const reader = new FileReader();
   reader.onload = () => {
     imagePrev.value = reader.result;
@@ -36,15 +38,19 @@ const previewPhoto = (e) => {
   reader.readAsDataURL(file.value);
 }
 blogData.image = file.value;
+console.log(file.value)
 
 const updateBlog = async () => {
+  // console.log(blogData.image.target.files[0]);
   const fd = new FormData();
-  // fd.append('_method', 'put')
-  fd.append('image', file.value);
+  fd.append('_method', 'put')
+  if (file.value !== undefined) {
+    fd.append('image', file.value);
+  }
   fd.append('title', blogData.title);
   fd.append('content', blogData.content);
   try{
-    const res = await axios.put(baseUrl + `blog/${route.params.id}`, fd,
+    const res = await axios.post(baseUrl + `blog/${route.params.id}`, fd,
         {
           headers: {'Content-Type': 'multipart/form-data'}
         }
