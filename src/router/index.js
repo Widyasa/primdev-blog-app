@@ -81,6 +81,12 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from) => {
+  if (!token.value && to.meta.isPrivate && from.name === 'login') {
+    return {name: 'login'}
+  }
+  if (!token.value && to.meta.isPrivate && from.name === 'register') {
+    return {name: 'register'}
+  }
   if (!token.value && to.meta.isPrivate) {
     return {name: 'login'}
   }
