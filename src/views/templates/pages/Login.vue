@@ -1,5 +1,4 @@
 <script setup>
-
 import BaseInput from "@/components/BaseInput.vue";
 import { reactive } from 'vue'
 import axios from 'axios'
@@ -18,7 +17,7 @@ const login = async () => {
       headers: { Authorization: `Bearer 2|HhnUrmaHAwSNUDf7Pz5IasQo4foBnU2KKr1gQLUW` }
     })
     localStorage.setItem("token", data.token)
-    await router.push('/')
+    await router.push('/dashboardz')
     console.log(data)
 
   } catch (error) {

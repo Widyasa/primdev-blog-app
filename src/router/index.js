@@ -9,6 +9,8 @@ import {token} from "@/helpers/GlobalVariable.js";
 import CreateBlog from "@/views/templates/pages/Blogs/CreateBlog.vue";
 import BlogTemplate from "@/views/templates/pages/Blogs/BlogTemplate.vue";
 import UpdateBlog from "@/views/templates/pages/Blogs/UpdateBlog.vue";
+import UserTemplate from "@/views/templates/UserTemplate.vue";
+import UserIndex from "@/views/templates/pages/User/UserIndex.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -16,7 +18,13 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      redirect: '/dashboard',
+      redirect: to => {
+          if (token.value) {
+            return {path:'/dashboard'}
+          } else {
+            return {path:'/user/index'}
+          }
+      },
       component: HomeTemplate,
       meta: {isPrivate: true},
       children : [
@@ -53,8 +61,6 @@ const router = createRouter({
             },
           ]
         },
-
-
       ]
     },
     {
@@ -75,6 +81,26 @@ const router = createRouter({
           component: Register,
           meta: {isPrivate: false},
         }
+      ]
+    },
+    {
+      path: '/user',
+      redirect: '/user/index',
+      component: UserTemplate,
+      meta: {isPrivate: false},
+      children: [
+        {
+          path: '/user/index',
+          name: 'userIndex',
+          component: UserIndex,
+          meta: {isPrivate: false},
+        },
+        // {
+        //   path: '/auth/register',
+        //   name: 'register',
+        //   component: Register,
+        //   meta: {isPrivate: false},
+        // }
       ]
     }
   ]
