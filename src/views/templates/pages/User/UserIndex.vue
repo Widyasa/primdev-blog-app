@@ -21,16 +21,11 @@ const searchData = async () => {
       headers: { Authorization: `Bearer 2|HhnUrmaHAwSNUDf7Pz5IasQo4foBnU2KKr1gQLUW` }
     })
     blogList.value = data
-    console.log(data)
     if (searchList.value === ''){
+      blogListNull.value = false
       await getData()
     }
-    if (data.length < 1) {
-      blogListNull.value = true
-      console.log("babi goreng")
-    } else {
-      blogListNull.value = false
-    }
+    blogListNull.value = data.length <= 0 && searchList.value !== '';
   } catch (e) {
     console.log(e)
   }

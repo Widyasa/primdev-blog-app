@@ -17,7 +17,7 @@ const login = async () => {
       headers: { Authorization: `Bearer 2|HhnUrmaHAwSNUDf7Pz5IasQo4foBnU2KKr1gQLUW` }
     })
     localStorage.setItem("token", data.token)
-    await router.push('/dashboardz')
+    await router.push('/dashboard')
     console.log(data)
 
   } catch (error) {
