@@ -1,5 +1,5 @@
 <script setup>
-import { onBeforeMount, onMounted, ref } from 'vue'
+import {onMounted, ref } from 'vue'
 import axios from 'axios'
 import { baseUrl } from '@/helpers/GlobalVariable.js'
 const user = ref({})

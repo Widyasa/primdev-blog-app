@@ -29,6 +29,7 @@ const login = async () => {
 
 <template>
   <div class="w-full">
+    
     <form @submit.prevent="login">
       <div class="flex flex-col gap-3 w-full">
         <base-input v-model="loginData.email" input-name="Email" input-title="Email" input-placeholder="enter your email..." input-type="email"/>

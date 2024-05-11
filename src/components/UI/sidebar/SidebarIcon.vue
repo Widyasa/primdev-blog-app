@@ -5,7 +5,7 @@ const props = defineProps({
 </script>
 
 <template>
-<RouterLink :to="{name : props.routeName}" active-class="active">
+<RouterLink :to="{name : props.routeName}"  active-class="active">
   <div class="dashboard-nav-wrapper w-full">
     <p class="text-dashboard capitalize">
       {{routeName}}
