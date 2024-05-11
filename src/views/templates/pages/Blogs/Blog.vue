@@ -1,14 +1,15 @@
 <script setup>
 import axios from "axios";
-import {baseUrl} from "@/helpers/GlobalVariable.js";
+import { baseUrl, getUserData } from '@/helpers/GlobalVariable.js'
 import {onMounted, ref} from "vue";
 const blogList = ref()
 const searchList = ref('')
+const userData = JSON.parse(getUserData.value)
 const getData = async () => {
   try{
-    const {data} = await axios.get(baseUrl + 'blog')
+    const {data} = await axios.get(baseUrl + 'blog/author/' + userData.id)
     blogList.value = data
-    console.log(data)
+    console.log(userData)
   } catch (e) {
     console.log(e)
   }

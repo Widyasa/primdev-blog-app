@@ -16,18 +16,16 @@ const file = ref()
 const previewPhoto = (e) => {
    file.value = e.target.files[0];
   if (!file.value) return; // Handle no file selected case
-
   const reader = new FileReader();
   reader.onload = () => {
     imagePrev.value = reader.result;
   };
-  reader.readAsDataURL(file.value.name);
+  reader.readAsDataURL(file.value);
 }
 blogData.image = file.value;
 
 const createBlog = async () => {
   const fd = new FormData();
-  // fd.append('_method', 'put')
   fd.append('image', file.value);
   fd.append('title', blogData.title);
   fd.append('content', blogData.content);

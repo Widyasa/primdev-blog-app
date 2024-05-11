@@ -7,6 +7,7 @@ const getUser = async () => {
   try {
     const {data} = await axios.get(baseUrl + 'user')
     user.value = data
+    console.log(user.value.id)
     localStorage.setItem('user', JSON.stringify(user.value))
   } catch (error) {
     console.error(error)

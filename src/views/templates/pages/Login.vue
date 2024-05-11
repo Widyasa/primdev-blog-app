@@ -18,6 +18,7 @@ const login = async () => {
     })
     localStorage.setItem("token", data.token)
     await router.push('/dashboard')
+    location.reload()
     console.log(data)
 
   } catch (error) {
