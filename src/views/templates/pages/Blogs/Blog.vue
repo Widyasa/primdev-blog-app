@@ -48,6 +48,7 @@ onMounted(() => {
       <RouterLink :to="{name: 'Create Blog'}" class="btn btn-primary whitespace-nowrap">Add New Blog</RouterLink>
     </div>
   </div>
+  <span class="loader relative left-1/2 mt-[40px]" v-if="blogList === undefined"></span>
   <div class="grid grid-cols-4 gap-4 mt-10">
     <div class="card-blog" v-for="(item, index) in blogList" :key="index">
       <img :src="item.image" alt="" class="w-full h-auto aspect-video object-cover rounded">
@@ -66,5 +67,23 @@ onMounted(() => {
 </template>
 
 <style scoped>
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 5px solid black;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
 
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 </style>
