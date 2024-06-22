@@ -5,6 +5,7 @@ import {onMounted, ref} from "vue";
 const blogList = ref()
 const searchList = ref('')
 const userData = JSON.parse(getUserData.value)
+const data = "Data"
 const getData = async () => {
   try{
     const {data} = await axios.get(baseUrl + 'blog/author/' + userData.id)
